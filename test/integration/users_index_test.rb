@@ -1,14 +1,12 @@
 require 'test_helper'
 
 class UsersIndexTest < ActionDispatch::IntegrationTest
-  # test "the truth" do
-  #   assert true
-  # end
+
   def setup
     @admin     = users(:test)
-    @non_admin = users(:lana)
+    @non_admin = users(:bob)
   end
-  
+
   test "index as admin including pagination and delete links" do
     log_in_as(@admin)
     get users_path
