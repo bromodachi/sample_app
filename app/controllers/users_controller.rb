@@ -4,13 +4,10 @@ class UsersController < ApplicationController
   before_action :correct_user, only: [:edit, :update]
   before_action :admin_user, only: :destroy
   
-   def index
+  def index
     @users = User.paginate(page: params[:page])
-<<<<<<< HEAD
   end
-=======
-   end
->>>>>>> account-activation-password-reset
+
   def show
     @user = User.find(params[:id])
   end
@@ -28,15 +25,9 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-<<<<<<< HEAD
-      log_in @user
-      flash[:success] = "Welcome to the Sample App!"
-      redirect_to @user
-=======
       @user.send_activation_email
-      flash[:info] = "Please check your email to activate your account!"
+      flash[:info] = "Please check your email to activate your account."
       redirect_to root_url
->>>>>>> account-activation-password-reset
     else
       render 'new'
     end
@@ -54,11 +45,8 @@ class UsersController < ApplicationController
     else
       render 'edit'
     end
-<<<<<<< HEAD
-  end
-=======
    end
->>>>>>> account-activation-password-reset
+   
   private
 
     def user_params
@@ -72,25 +60,18 @@ class UsersController < ApplicationController
         flash[:danger] = "Please log in."
         redirect_to login_url
       end
-<<<<<<< HEAD
-    end
-=======
   end
->>>>>>> account-activation-password-reset
+
     
      def correct_user
       @user = User.find(params[:id])
            redirect_to(root_url) unless current_user?(@user)
 
-<<<<<<< HEAD
-    end
- def admin_user
-      redirect_to(root_url) unless current_user.admin?
-    end
-=======
      end
+  def admin_user
+      redirect_to(root_url) unless current_user.admin?
+  end
  def admin_user
       redirect_to(root_url) unless current_user.admin?
  end
->>>>>>> account-activation-password-reset
 end
