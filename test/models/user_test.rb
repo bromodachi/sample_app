@@ -75,7 +75,13 @@ class UserTest < ActiveSupport::TestCase
   end
   
 
-  
+  test "check if micropost is dependent to the user" do
+    @user.save
+    @user.microposts.create!(content: "Lorem ipsum");
+    assert_difference 'Micropost.count', -1 do
+      @user.destroy
+    end
+  end
 
   
 end
